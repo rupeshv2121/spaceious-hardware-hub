@@ -7,6 +7,10 @@ import hero from "@/assets/hero-hardware.jpg";
 import catHandles from "@/assets/cat-handles.jpg";
 import catLocks from "@/assets/cat-locks.jpg";
 import catAldrops from "@/assets/cat-aldrops.jpg";
+import catKits from "@/assets/cat-kits.jpg";
+import catHinges from "@/assets/cat-hinges.jpg";
+import catCabinet from "@/assets/cat-cabinet.jpg";
+import catGlass from "@/assets/cat-glass.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,6 +36,10 @@ const catImages: Record<string, string> = {
   "handles-knobs": catHandles,
   locks: catLocks,
   "aldrops-bolts": catAldrops,
+  "door-kits": catKits,
+  "hinges-closers": catHinges,
+  "cabinet-hardware": catCabinet,
+  "glass-fittings": catGlass,
 };
 
 const why = [
