@@ -12,12 +12,12 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { categories, finishes, materials, products } from "@/lib/catalog";
 import { useMemo, useState } from "react";
 
-type Search = { category?: string; q?: string };
+type Search = { category: string | undefined; q: string | undefined };
 
 export const Route = createFileRoute("/products/")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    category: typeof search.category === "string" ? search.category : undefined,
-    q: typeof search.q === "string" ? search.q : undefined,
+    category: typeof search["category"] === "string" ? (search["category"] as string) : undefined,
+    q: typeof search["q"] === "string" ? (search["q"] as string) : undefined,
   }),
   head: () => ({
     meta: [
