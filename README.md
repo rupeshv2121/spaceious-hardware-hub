@@ -148,3 +148,32 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Deploy to Vercel
+
+This is a TanStack Start (SSR) app built by nitro, so it deploys as Vercel
+Functions + static assets, not as a static site.
+
+Deployment is Git-based — no CLI, no local build step:
+
+1. Push this repo to GitHub.
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. Leave every build setting untouched — [vercel.json](vercel.json) supplies
+   the install and build commands, and the framework preset is pinned there.
+4. Add any runtime environment variables under Settings → Environment
+   Variables, then deploy.
+
+After that, every push to `main` ships to production and every other branch or
+PR gets a preview URL automatically.
+
+How it is wired:
+
+- [vercel.json](vercel.json) pins the install/build commands to bun (the repo
+  ships a `bun.lock`).
+- [vite.config.ts](vite.config.ts) switches nitro to the `vercel` preset only
+  when `VERCEL=1` is set, so Lovable's own cloudflare deploys are unaffected.
+  The build then emits Build Output API v3 into `.vercel/output`, which Vercel
+  picks up automatically — no output directory to configure.
+
+Note that only `VITE_*` env vars are inlined into the client bundle; everything
+else stays server-side.
