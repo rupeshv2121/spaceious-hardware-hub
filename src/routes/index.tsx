@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Architectural hardware in a range of materials, sizes and finishes for homes, shops and commercial spaces.",
+          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
     ],
   }),

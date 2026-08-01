@@ -84,16 +84,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Locks, handles, aldrops, hinges and fittings for households, shops and commercial spaces.",
+          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
       { name: "author", content: "Space-ious" },
-      { property: "og:title", content: "Space-ious Hardware" },
+      { property: "og:title", content: "Space-ious — Hardware That Fits Every Space" },
       {
         property: "og:description",
-        content: "Architectural hardware in every size, material and finish.",
+        content: "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Space-ious — Hardware That Fits Every Space" },
+      { name: "twitter:description", content: "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5ce9de05-9e3e-44b7-abfd-aa2e286531bc/id-preview-15107bae--37241688-31e1-4a75-9f69-ca81657e1a46.lovable.app-1785589124164.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5ce9de05-9e3e-44b7-abfd-aa2e286531bc/id-preview-15107bae--37241688-31e1-4a75-9f69-ca81657e1a46.lovable.app-1785589124164.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
