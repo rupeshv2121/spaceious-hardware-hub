@@ -56,13 +56,13 @@ function Home() {
        <div className="mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <span className="inline-flex items-center rounded-full bg-accent px-3.5 py-1.5 text-xs font-medium tracking-wide text-accent-foreground">
+            <span className="gradient-brand inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide text-primary-foreground">
               Household · Retail · Commercial
             </span>
             <h1 className="mt-5 text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
               Hardware that fits every space
             </h1>
-            <div className="mt-6 h-0.5 w-24 bg-gold" />
+            <div className="gradient-brand mt-6 h-1 w-24 rounded-full" />
             <p className="mt-5 max-w-xl text-base leading-relaxed text-steel-foreground/75 sm:text-lg">
               Space-ious supplies aldrops, door handles, locks, door kits, hinges and
               fittings across a wide range of materials, sizes and finishes — engineered
