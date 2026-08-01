@@ -63,25 +63,25 @@
 
 :root {
   --radius: 0.875rem;
-  --background: oklch(0.99 0.004 95);
-  --foreground: oklch(0.23 0.008 75);
+  --background: oklch(0.971 0.006 84.6);
+  --foreground: oklch(0.296 0.039 187.3);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.23 0.008 75);
+  --card-foreground: oklch(0.296 0.039 187.3);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.23 0.008 75);
-  --primary: oklch(0.66 0.108 78);
-  --primary-foreground: oklch(0.2 0.01 80);
-  --secondary: oklch(0.955 0.006 90);
-  --secondary-foreground: oklch(0.27 0.008 75);
-  --muted: oklch(0.962 0.005 90);
-  --muted-foreground: oklch(0.53 0.012 80);
-  --accent: oklch(0.95 0.026 88);
-  --accent-foreground: oklch(0.32 0.05 75);
+  --popover-foreground: oklch(0.296 0.039 187.3);
+  --primary: oklch(0.597 0.19 31.1);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.941 0.01 81.8);
+  --secondary-foreground: oklch(0.296 0.039 187.3);
+  --muted: oklch(0.941 0.01 81.8);
+  --muted-foreground: oklch(0.528 0 89.9);
+  --accent: oklch(0.728 0.138 89.7);
+  --accent-foreground: oklch(0.296 0.039 187.3);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.9 0.03 88);
+  --input: oklch(0.9 0.03 88);
+  --ring: oklch(0.597 0.19 31.1);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -148,13 +148,19 @@
   --font-display: "Poppins", "Inter", sans-serif;
   --color-steel: var(--steel);
   --color-steel-foreground: var(--steel-foreground);
+  --color-gold: var(--gold);
+  --color-sage: var(--sage);
+  --color-brand: var(--brand);
 }
 
 :root {
-  --steel: oklch(0.28 0.008 75);
-  --steel-foreground: oklch(0.98 0.004 95);
-  --shadow-soft: 0 1px 2px oklch(0.3 0.02 80 / 0.04), 0 8px 24px -12px oklch(0.3 0.02 80 / 0.16);
-  --shadow-lift: 0 2px 6px oklch(0.3 0.02 80 / 0.06), 0 24px 48px -20px oklch(0.3 0.02 80 / 0.26);
+  --steel: oklch(0.296 0.039 187.3);
+  --steel-foreground: oklch(1 0 0);
+  --gold: oklch(0.728 0.138 89.7);
+  --sage: oklch(0.647 0.1 128.4);
+  --brand: oklch(0.597 0.19 31.1);
+  --shadow-soft: 0 1px 2px oklch(0.296 0.039 187.3 / 0.05), 0 8px 24px -12px oklch(0.296 0.039 187.3 / 0.18);
+  --shadow-lift: 0 2px 6px oklch(0.296 0.039 187.3 / 0.07), 0 24px 48px -20px oklch(0.296 0.039 187.3 / 0.28);
 }
 
 @layer base {
