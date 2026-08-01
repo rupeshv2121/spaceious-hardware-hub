@@ -16,11 +16,11 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="min-w-0">
-          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          <p className="text-xs font-medium uppercase tracking-widest text-steel">
             {getCategory(product.category)?.name}
           </p>
           <h3 className="mt-1 text-base font-semibold leading-snug">{product.name}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-sm font-medium text-gold">
             {product.material} · {product.finish} · {product.size}
           </p>
         </div>

@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Architectural hardware in a range of materials, sizes and finishes for homes, shops and commercial spaces.",
+          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
     ],
   }),
@@ -52,16 +52,18 @@ const why = [
 function Home() {
   return (
     <>
-      <section className="mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
+      <section className="bg-steel text-steel-foreground">
+       <div className="mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <span className="inline-flex items-center rounded-full bg-accent px-3.5 py-1.5 text-xs font-medium tracking-wide text-accent-foreground">
+            <span className="gradient-brand inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide text-primary-foreground">
               Household · Retail · Commercial
             </span>
             <h1 className="mt-5 text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
               Hardware that fits every space
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <div className="gradient-brand mt-6 h-1 w-24 rounded-full" />
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-steel-foreground/75 sm:text-lg">
               Space-ious supplies aldrops, door handles, locks, door kits, hinges and
               fittings across a wide range of materials, sizes and finishes — engineered
               for everyday use and specified for projects.
@@ -72,7 +74,7 @@ function Home() {
                   Explore products <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className="border-gold bg-transparent text-gold hover:bg-gold/10 hover:text-gold">
                 <Link to="/contact">Get a quote</Link>
               </Button>
             </div>
@@ -87,6 +89,7 @@ function Home() {
             />
           </div>
         </div>
+       </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
