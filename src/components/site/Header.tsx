@@ -25,13 +25,13 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b-2 border-gold bg-steel/95 text-steel-foreground backdrop-blur-md">
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
         <Link to="/" className="flex min-w-0 items-center gap-2.5">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-steel font-display text-sm font-bold text-steel-foreground">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-card font-display text-sm font-bold text-brand">
             S
           </span>
-          <span className="truncate font-display text-lg font-semibold tracking-tight">
+          <span className="truncate font-display text-lg font-semibold tracking-tight text-brand">
             Space-ious
           </span>
         </Link>
@@ -43,9 +43,9 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                activeProps={{ className: "text-foreground" }}
-                inactiveProps={{ className: "text-muted-foreground" }}
-                className="rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:text-foreground"
+                activeProps={{ className: "text-gold border-gold" }}
+                inactiveProps={{ className: "text-steel-foreground/80 border-transparent" }}
+                className="rounded-none border-b-2 px-3 py-2 text-sm font-medium transition-colors hover:border-gold hover:text-gold"
               >
                 {item.label}
               </Link>
@@ -54,6 +54,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
+            className="text-steel-foreground hover:bg-steel-foreground/10 hover:text-gold"
             aria-label="Search products"
             onClick={() => setShowSearch((s) => !s)}
           >
@@ -65,7 +66,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="text-steel-foreground hover:bg-steel-foreground/10 hover:text-gold md:hidden"
             aria-label="Toggle menu"
             onClick={() => setOpen((o) => !o)}
           >
@@ -75,7 +76,7 @@ export function Header() {
       </div>
 
       {showSearch && (
-        <div className="border-t border-border/70 bg-card">
+        <div className="border-t border-gold/40 bg-card">
           <form onSubmit={submit} className="mx-auto flex max-w-7xl gap-2 px-4 py-3 sm:px-6 lg:px-8">
             <Input
               autoFocus
@@ -89,14 +90,14 @@ export function Header() {
       )}
 
       {open && (
-        <nav className="border-t border-border/70 bg-card px-4 py-3 md:hidden">
+        <nav className="border-t border-gold/40 bg-card px-4 py-3 md:hidden">
           {nav.map((item) => (
             <Link
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="block rounded-lg px-2 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
+              className="block rounded-lg px-2 py-2.5 text-sm font-medium text-muted-foreground hover:text-gold"
+              activeProps={{ className: "text-gold" }}
               activeOptions={{ exact: item.to === "/" }}
             >
               {item.label}
