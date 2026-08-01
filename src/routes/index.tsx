@@ -43,56 +43,81 @@ const catImages: Record<string, string> = {
 };
 
 const why = [
-  { icon: ShieldCheck, title: "Quality materials", text: "SS 304, solid brass and zinc alloy sourced from audited mills." },
-  { icon: Layers, title: "Range & variety", text: "Hundreds of SKUs across sizes, sections and applications." },
-  { icon: Truck, title: "Built to last", text: "Cycle-tested mechanisms and load-rated fittings for daily use." },
-  { icon: Sparkles, title: "Trusted finishes", text: "PVD and powder coatings that resist tarnish, rust and wear." },
+  {
+    icon: ShieldCheck,
+    title: "Quality materials",
+    text: "SS 304, solid brass and zinc alloy sourced from audited mills.",
+  },
+  {
+    icon: Layers,
+    title: "Range & variety",
+    text: "Hundreds of SKUs across sizes, sections and applications.",
+  },
+  {
+    icon: Truck,
+    title: "Built to last",
+    text: "Cycle-tested mechanisms and load-rated fittings for daily use.",
+  },
+  {
+    icon: Sparkles,
+    title: "Trusted finishes",
+    text: "PVD and powder coatings that resist tarnish, rust and wear.",
+  },
 ];
 
 function Home() {
   return (
     <>
-      <section className="bg-steel text-steel-foreground">
-       <div className="mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <span className="gradient-brand inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide text-primary-foreground">
-              Household · Retail · Commercial
-            </span>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
-              Hardware that fits every space
-            </h1>
-            <div className="gradient-brand mt-6 h-1 w-24 rounded-full" />
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-steel-foreground/75 sm:text-lg">
-              Space-ious supplies aldrops, door handles, locks, door kits, hinges and
-              fittings across a wide range of materials, sizes and finishes — engineered
-              for everyday use and specified for projects.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/products">
-                  Explore products <ArrowRight className="ml-1.5 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-gold bg-transparent text-gold hover:bg-gold/10 hover:text-gold">
-                <Link to="/contact">Get a quote</Link>
-              </Button>
+      {/* Cancels the layout's header offset so the dark hero runs to the very
+          top of the page and the navbar floats on top of it. */}
+      <section className="mt-[calc(var(--header-h)*-1)] bg-steel pt-[var(--header-h)] text-steel-foreground">
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-24 lg:pt-20">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div>
+              <span className="gradient-brand inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide text-primary-foreground">
+                Household · Retail · Commercial
+              </span>
+              <h1 className="mt-5 text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
+                Hardware that fits every space
+              </h1>
+              <div className="gradient-brand mt-6 h-1 w-24 rounded-full" />
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-steel-foreground/75 sm:text-lg">
+                Space-ious supplies aldrops, door handles, locks, door kits, hinges and fittings
+                across a wide range of materials, sizes and finishes — engineered for everyday use
+                and specified for projects.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <Link to="/products" search={{ category: undefined, q: undefined }}>
+                    Explore products <ArrowRight className="ml-1.5 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-gold bg-transparent text-gold hover:bg-gold/10 hover:text-gold"
+                >
+                  <Link to="/contact" search={{ product: undefined }}>
+                    Get a quote
+                  </Link>
+                </Button>
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-lift)]">
+              <img
+                src={hero}
+                alt="Brass and steel door hardware including handles, hinges, knobs and an aldrop"
+                width={1408}
+                height={1104}
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
-          <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-lift)]">
-            <img
-              src={hero}
-              alt="Brass and steel door hardware including handles, hinges, knobs and an aldrop"
-              width={1408}
-              height={1104}
-              className="h-full w-full object-cover"
-            />
-          </div>
         </div>
-       </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 mt-10 sm:px-6 lg:px-8">
         <div className="grid gap-4 rounded-3xl bg-card p-6 shadow-[var(--shadow-soft)] sm:grid-cols-2 lg:grid-cols-4 lg:p-8">
           {why.map(({ icon: Icon, title, text }) => (
             <div key={title} className="flex gap-3.5">
@@ -114,7 +139,11 @@ function Home() {
             <h2 className="text-2xl font-semibold sm:text-3xl">Shop by category</h2>
             <p className="mt-2 text-muted-foreground">Best-selling ranges across our catalogue.</p>
           </div>
-          <Link to="/products" className="text-sm font-medium text-foreground underline-offset-4 hover:underline">
+          <Link
+            to="/products"
+            search={{ category: undefined, q: undefined }}
+            className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
+          >
             View all products
           </Link>
         </div>
@@ -165,9 +194,9 @@ function Home() {
           <div>
             <h2 className="text-2xl font-semibold sm:text-3xl">Built around fitters and buyers</h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              What started as a single hardware counter is now a curated catalogue serving
-              builders, interior contractors, retailers and homeowners. Every item we list
-              is checked for fit, finish consistency and long-term durability.
+              What started as a single hardware counter is now a curated catalogue serving builders,
+              interior contractors, retailers and homeowners. Every item we list is checked for fit,
+              finish consistency and long-term durability.
             </p>
             <Button asChild variant="outline" className="mt-6">
               <Link to="/about">Learn more about us</Link>
@@ -194,12 +223,14 @@ function Home() {
           <div className="max-w-xl">
             <h2 className="text-2xl font-semibold sm:text-3xl">Need pricing for a project?</h2>
             <p className="mt-2 text-steel-foreground/70">
-              Share your requirement list and we'll respond with availability, finishes and
-              a quotation within a working day.
+              Share your requirement list and we'll respond with availability, finishes and a
+              quotation within a working day.
             </p>
           </div>
           <Button asChild size="lg">
-            <Link to="/contact">Send an enquiry</Link>
+            <Link to="/contact" search={{ product: undefined }}>
+              Send an enquiry
+            </Link>
           </Button>
         </div>
       </section>

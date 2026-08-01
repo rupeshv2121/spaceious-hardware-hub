@@ -12,7 +12,14 @@ export function ProductCard({ product }: { product: Product }) {
         className="block"
         aria-label={product.name}
       >
-        <ProductThumb name={product.name} className="aspect-[4/3] w-full" />
+        <ProductThumb
+          name={product.name}
+          productId={product.id}
+          categorySlug={product.category}
+          finish={product.finish}
+          badge
+          className="aspect-[4/3] w-full"
+        />
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="min-w-0">

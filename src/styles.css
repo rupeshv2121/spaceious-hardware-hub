@@ -69,7 +69,10 @@
   --card-foreground: oklch(0.296 0.039 187.3);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.296 0.039 187.3);
-  --primary: oklch(0.597 0.19 31.1);
+  /* Copper — the midpoint of the brand gradient. Used wherever a *flat* brand
+     fill is unavoidable (form controls, tooltips) so nothing reads as "error red".
+     Prominent brand surfaces should use the `gradient-brand` utility instead. */
+  --primary: oklch(0.615 0.175 45);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.941 0.01 81.8);
   --secondary-foreground: oklch(0.296 0.039 187.3);
@@ -81,7 +84,7 @@
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.9 0.03 88);
   --input: oklch(0.9 0.03 88);
-  --ring: oklch(0.597 0.19 31.1);
+  --ring: oklch(0.615 0.175 45);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -154,14 +157,34 @@
 }
 
 :root {
+  /* Vertical space the floating navbar occupies. The header itself is
+     zero-height and overlays the page, so this is what pushes page content
+     clear of it — and what a full-bleed hero cancels out to sit underneath. */
+  --header-h: 5.25rem;
   --steel: oklch(0.296 0.039 187.3);
   --steel-foreground: oklch(1 0 0);
   --gold: oklch(0.728 0.138 89.7);
   --sage: oklch(0.647 0.1 128.4);
   --brand: oklch(0.597 0.19 31.1);
+  --brand-deep: oklch(0.5 0.19 22);
   --shadow-soft: 0 1px 2px oklch(0.296 0.039 187.3 / 0.05), 0 8px 24px -12px oklch(0.296 0.039 187.3 / 0.18);
   --shadow-lift: 0 2px 6px oklch(0.296 0.039 187.3 / 0.07), 0 24px 48px -20px oklch(0.296 0.039 187.3 / 0.28);
-  --gradient-brand: linear-gradient(135deg, var(--brand) 0%, var(--gold) 100%);
+  --gradient-brand: linear-gradient(135deg, var(--brand-deep) 0%, var(--brand) 38%, var(--gold) 100%);
+  /* For text and icons sitting on the dark steel surfaces (header, footer).
+     Starts at the brand red rather than the deep stop and finishes above the
+     gold, so every stop clears 3:1 against --steel. */
+  --gradient-brand-light: linear-gradient(135deg, var(--brand) 0%, var(--gold) 55%, oklch(0.865 0.088 86) 100%);
+  /* Deep teal sweep for the header and other steel surfaces — same hue family
+     as --steel, opened up either side of it so large fills have depth. */
+  --gradient-steel: linear-gradient(115deg, oklch(0.225 0.042 196) 0%, var(--steel) 48%, oklch(0.372 0.052 176) 100%);
+  /* Softer sweep for large fills, where the full-strength gradient would shout. */
+  --gradient-brand-soft: linear-gradient(135deg, oklch(0.597 0.19 31.1 / 0.14) 0%, oklch(0.728 0.138 89.7 / 0.14) 100%);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-h: 6rem;
+  }
 }
 
 @layer base {
@@ -186,4 +209,61 @@
 @utility gradient-brand {
   background-image: var(--gradient-brand);
   background-color: var(--brand);
+}
+
+@utility gradient-brand-soft {
+  background-image: var(--gradient-brand-soft);
+}
+
+@utility gradient-steel {
+  background-image: var(--gradient-steel);
+  background-color: var(--steel);
+}
+
+/* Gradient-filled text. The fallback colour matters: if background-clip: text
+   is unsupported the text stays legible instead of vanishing. */
+@utility text-gradient-brand {
+  color: var(--brand);
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    background-image: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@utility text-gradient-brand-light {
+  color: var(--gold);
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    background-image: var(--gradient-brand-light);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Gradient-filled lucide icons. Depends on the <BrandGradientDefs /> SVG that
+   __root.tsx renders once per document — without it the icons fall back to
+   currentColor. */
+@utility icon-gradient {
+  color: var(--brand);
+  stroke: url(#sx-brand-gradient);
+}
+
+@utility icon-gradient-light {
+  color: var(--gold);
+  stroke: url(#sx-brand-gradient-light);
+}
+
+/* Hairline gradient border via a padding-box/border-box mask sandwich. */
+@utility border-gradient-brand {
+  border-color: transparent;
+  background-image: linear-gradient(var(--color-card), var(--color-card)), var(--gradient-brand);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+@utility divider-gradient {
+  background-image: var(--gradient-brand);
+  border: 0;
 }

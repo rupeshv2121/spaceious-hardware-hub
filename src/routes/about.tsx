@@ -23,10 +23,26 @@ export const Route = createFileRoute("/about")({
 });
 
 const pillars = [
-  { icon: BadgeCheck, title: "Quality first", text: "Salt-spray, cycle and load testing on every incoming lot before it reaches the catalogue." },
-  { icon: Boxes, title: "Real variety", text: "Multiple sections, sizes and finishes per product so specifications never get compromised." },
-  { icon: Ruler, title: "Fitment accuracy", text: "Standardised backsets, cup sizes and hole centres so replacements drop straight in." },
-  { icon: Factory, title: "Reliable sourcing", text: "Long-standing partner units across Aligarh, Rajkot and Jamnagar with committed lead times." },
+  {
+    icon: BadgeCheck,
+    title: "Quality first",
+    text: "Salt-spray, cycle and load testing on every incoming lot before it reaches the catalogue.",
+  },
+  {
+    icon: Boxes,
+    title: "Real variety",
+    text: "Multiple sections, sizes and finishes per product so specifications never get compromised.",
+  },
+  {
+    icon: Ruler,
+    title: "Fitment accuracy",
+    text: "Standardised backsets, cup sizes and hole centres so replacements drop straight in.",
+  },
+  {
+    icon: Factory,
+    title: "Reliable sourcing",
+    text: "Based in Aligarh — India's lock-making heartland — with partner units in Rajkot and Jamnagar.",
+  },
 ];
 
 function About() {
@@ -38,16 +54,14 @@ function About() {
             Hardware chosen with the fitter in mind
           </h1>
           <p className="mt-5 leading-relaxed text-muted-foreground">
-            Space-ious began as a family hardware counter serving local carpenters and
-            shopkeepers. Over eighteen years the questions never changed — will it fit,
-            will the finish hold, and can you supply it again next month? Our catalogue is
-            built around answering all three.
+            Space-ious began as a family hardware counter serving local carpenters and shopkeepers.
+            Over eighteen years the questions never changed — will it fit, will the finish hold, and
+            can you supply it again next month? Our catalogue is built around answering all three.
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            Today we supply households, retail fit-outs and commercial projects with locks,
-            handles, aldrops, door kits, hinges, closers, cabinet hardware and glass
-            fittings — kept in consistent finish families so a project can be specified end
-            to end from one place.
+            Today we supply households, retail fit-outs and commercial projects with locks, handles,
+            aldrops, door kits, hinges, closers, cabinet hardware and glass fittings — kept in
+            consistent finish families so a project can be specified end to end from one place.
           </p>
         </div>
         <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-lift)]">
@@ -86,13 +100,15 @@ function About() {
             "Batch traceability for warranty and repeat orders",
           ].map((item) => (
             <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-muted-foreground">
-              <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <BadgeCheck className="icon-gradient mt-0.5 h-4 w-4 shrink-0" />
               {item}
             </li>
           ))}
         </ul>
         <Button asChild className="mt-8">
-          <Link to="/contact">Talk to our team</Link>
+          <Link to="/contact" search={{ product: undefined }}>
+            Talk to our team
+          </Link>
         </Button>
       </div>
     </div>

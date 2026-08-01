@@ -73,10 +73,14 @@ export const productsByCategory = (slug: string) => products.filter((p) => p.cat
 export const featuredProducts = products.filter((p) => p.featured);
 
 export const contact = {
-  phone: "+91 98250 41200",
-  phoneHref: "+919825041200",
-  whatsapp: "919825041200",
+  phone: "+91 89236 46841",
+  phoneHref: "+918923646841",
+  /** wa.me format: country code + number, no "+" and no separators. */
+  whatsapp: "918923646841",
   email: "sales@space-ious.in",
-  address: "Unit 14, Hardware Market Complex, Ring Road, Ahmedabad, Gujarat 380009",
+  city: "Aligarh",
+  region: "Uttar Pradesh",
+  country: "India",
+  address: "Hardware Market, Aligarh, Uttar Pradesh 202001, India",
   hours: "Mon – Sat, 9:30 AM – 7:00 PM",
 };

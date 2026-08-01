@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { BrandGradientDefs } from "@/components/site/BrandGradientDefs";
+import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -27,7 +29,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center gradient-brand rounded-md px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
             Go home
           </Link>
@@ -59,7 +61,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center gradient-brand rounded-md px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
             Try again
           </button>
@@ -90,14 +92,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Space-ious — Hardware That Fits Every Space" },
       {
         property: "og:description",
-        content: "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
+        content:
+          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Space-ious — Hardware That Fits Every Space" },
-      { name: "twitter:description", content: "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5ce9de05-9e3e-44b7-abfd-aa2e286531bc/id-preview-15107bae--37241688-31e1-4a75-9f69-ca81657e1a46.lovable.app-1785589124164.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5ce9de05-9e3e-44b7-abfd-aa2e286531bc/id-preview-15107bae--37241688-31e1-4a75-9f69-ca81657e1a46.lovable.app-1785589124164.png" },
+      {
+        name: "twitter:description",
+        content:
+          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5ce9de05-9e3e-44b7-abfd-aa2e286531bc/id-preview-15107bae--37241688-31e1-4a75-9f69-ca81657e1a46.lovable.app-1785589124164.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5ce9de05-9e3e-44b7-abfd-aa2e286531bc/id-preview-15107bae--37241688-31e1-4a75-9f69-ca81657e1a46.lovable.app-1785589124164.png",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -138,14 +153,23 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-background">
+      <BrandGradientDefs />
+      {/* overflow-x-clip, not hidden: `hidden` would make this a scroll
+          container and break the sticky header. This is a backstop — any
+          horizontal overflow on a phone makes the browser scale the entire page
+          down to fit, which is a page-wide failure from one stray element. */}
+      <div className="flex min-h-screen flex-col overflow-x-clip bg-background">
         <Header />
-        <main className="flex-1">
+        {/* The header overlays the page, so pad content clear of it. A section
+            that wants to sit *under* the bar cancels this with a negative
+            margin — see the hero on the home page. */}
+        <main className="flex-1 pt-[var(--header-h)]">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </main>
         <Footer />
       </div>
+      <WhatsAppFab />
       <Toaster />
     </QueryClientProvider>
   );

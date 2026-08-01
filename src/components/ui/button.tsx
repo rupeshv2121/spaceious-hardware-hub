@@ -16,7 +16,8 @@ const buttonVariants = cva(
           "border border-accent bg-transparent text-accent shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent/15 hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        // Not gradient text: background-clip clips the underline away too.
+        link: "text-steel underline-offset-4 decoration-[var(--gold)] hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",
