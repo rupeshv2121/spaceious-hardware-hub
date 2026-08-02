@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { BadgeCheck, Boxes, Factory, Ruler } from "lucide-react";
-import hero from "@/assets/hero-hardware.jpg";
+import { productImage } from "@/lib/catalog";
+
+const hero = productImage("door-knocker-lion");
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -59,18 +61,19 @@ function About() {
             can you supply it again next month? Our catalogue is built around answering all three.
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            Today we supply households, retail fit-outs and commercial projects with locks, handles,
-            aldrops, door kits, hinges, closers, cabinet hardware and glass fittings — kept in
-            consistent finish families so a project can be specified end to end from one place.
+            Today we supply households, retail fit-outs and commercial projects with door and
+            cabinet handles, knobs, folding handles, rim locks, hooks and hangers, curtain brackets
+            and door accessories — kept in consistent finish families so a project can be specified
+            end to end from one place.
           </p>
         </div>
         <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-lift)]">
           <img
             src={hero}
-            alt="Assorted brass and steel architectural hardware"
+            alt="Space-ious cast lion-head door knocker in an antique brass finish"
             loading="lazy"
-            width={1408}
-            height={1104}
+            width={848}
+            height={1280}
             className="h-full w-full object-cover"
           />
         </div>

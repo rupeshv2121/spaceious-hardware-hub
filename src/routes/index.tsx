@@ -2,15 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Layers, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/site/ProductCard";
-import { categories, featuredProducts } from "@/lib/catalog";
-import hero from "@/assets/hero-hardware.jpg";
-import catHandles from "@/assets/cat-handles.jpg";
-import catLocks from "@/assets/cat-locks.jpg";
-import catAldrops from "@/assets/cat-aldrops.jpg";
-import catKits from "@/assets/cat-kits.jpg";
-import catHinges from "@/assets/cat-hinges.jpg";
-import catCabinet from "@/assets/cat-cabinet.jpg";
-import catGlass from "@/assets/cat-glass.jpg";
+import { categories, featuredProducts, productImage } from "@/lib/catalog";
+
+const hero = productImage("model-more-gold");
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,16 +25,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Home,
 });
-
-const catImages: Record<string, string> = {
-  "handles-knobs": catHandles,
-  locks: catLocks,
-  "aldrops-bolts": catAldrops,
-  "door-kits": catKits,
-  "hinges-closers": catHinges,
-  "cabinet-hardware": catCabinet,
-  "glass-fittings": catGlass,
-};
 
 const why = [
   {
@@ -82,9 +66,9 @@ function Home() {
               </h1>
               <div className="gradient-brand mt-6 h-1 w-24 rounded-full" />
               <p className="mt-5 max-w-xl text-base leading-relaxed text-steel-foreground/75 sm:text-lg">
-                Space-ious supplies aldrops, door handles, locks, door kits, hinges and fittings
-                across a wide range of materials, sizes and finishes — engineered for everyday use
-                and specified for projects.
+                Space-ious supplies door and cabinet handles, knobs, folding handles, rim locks,
+                hooks, curtain brackets and door accessories — in chrome, satin, antique brass, gold
+                and black finishes, for everyday use and for projects.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg">
@@ -107,9 +91,9 @@ function Home() {
             <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-lift)]">
               <img
                 src={hero}
-                alt="Brass and steel door hardware including handles, hinges, knobs and an aldrop"
-                width={1408}
-                height={1104}
+                alt="Space-ious More 100 pull handles in a gold finish, laid out on a timber surface"
+                width={1280}
+                height={960}
                 className="h-full w-full object-cover"
               />
             </div>
@@ -155,18 +139,14 @@ function Home() {
               search={{ category: c.slug, q: undefined }}
               className="card-lift group overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]"
             >
-              {catImages[c.slug] ? (
-                <img
-                  src={catImages[c.slug]}
-                  alt={c.name}
-                  loading="lazy"
-                  width={900}
-                  height={700}
-                  className="aspect-[16/10] w-full object-cover"
-                />
-              ) : (
-                <div className="aspect-[16/10] w-full bg-[radial-gradient(circle_at_35%_30%,var(--color-accent),var(--color-secondary))]" />
-              )}
+              <img
+                src={productImage(c.cover)}
+                alt={c.name}
+                loading="lazy"
+                width={1280}
+                height={800}
+                className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
               <div className="p-5">
                 <h3 className="text-base font-semibold">{c.name}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.blurb}</p>
@@ -206,7 +186,7 @@ function Home() {
             {[
               ["18+", "Years in hardware"],
               ["700+", "SKUs catalogued"],
-              ["6", "Finish families"],
+              ["9", "Finish families"],
               ["24 hr", "Quote turnaround"],
             ].map(([k, v]) => (
               <div key={v} className="rounded-2xl bg-card p-5 shadow-[var(--shadow-soft)]">

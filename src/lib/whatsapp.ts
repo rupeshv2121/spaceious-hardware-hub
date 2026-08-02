@@ -33,10 +33,11 @@ export function productEnquiry(product: Product, finish?: string): string {
     `${GREETING} I'd like a quote for:`,
     "",
     `• Product: ${product.name}`,
-    `• Code: ${product.id.toUpperCase()}`,
+    `• Code: ${product.code}`,
     `• Finish: ${finish ?? product.finish}`,
-    `• Size: ${product.size}`,
   ];
+  // Size is only carried on entries where it has been confirmed.
+  if (product.size) lines.push(`• Size: ${product.size}`);
   return whatsappLink(lines.join("\n"));
 }
 

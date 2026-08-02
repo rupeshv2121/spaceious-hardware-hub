@@ -18,6 +18,10 @@ dist-ssr
 .nitro
 *.local
 
+# Full-resolution product photography. src/assets/products holds the
+# web-optimised copies that actually ship; these are the untouched camera files.
+src/assets/originals/
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars

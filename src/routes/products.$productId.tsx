@@ -1,14 +1,10 @@
-import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Product3DViewer } from "@/components/site/Product3DViewer";
-import { ProductThumb } from "@/components/site/ProductThumb";
 import { ProductCard } from "@/components/site/ProductCard";
-import { contact, getCategory, getProduct, products } from "@/lib/catalog";
-import { finishOptions } from "@/lib/finishes";
+import { contact, getCategory, getProduct, productImage, products } from "@/lib/catalog";
 import { productEnquiry } from "@/lib/whatsapp";
 import { WhatsAppGlyph } from "@/components/site/WhatsAppFab";
-import { Hand, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 
 export const Route = createFileRoute("/products/$productId")({
   loader: ({ params }) => {
@@ -26,7 +22,8 @@ export const Route = createFileRoute("/products/$productId")({
       };
     }
     const { product } = loaderData;
-    const desc = `${product.name} — ${product.material}, ${product.finish}, ${product.size}. Enquire with Space-ious for pricing and availability.`;
+    const specs = [product.material, product.finish, product.size].filter(Boolean).join(", ");
+    const desc = `${product.name} — ${specs}. Enquire with Space-ious for pricing and availability.`;
     return {
       meta: [
         { title: `${product.name} — Space-ious Hardware` },
@@ -45,12 +42,14 @@ function ProductDetail() {
   const related = products
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 3);
-  const finishes = finishOptions(product);
-  // Tagged with the product id so navigating to a sibling product falls back to
-  // that product's own finish instead of inheriting the previous selection.
-  const [selected, setSelected] = useState({ id: product.id, finish: product.finish });
-  const finish = selected.id === product.id ? selected.finish : product.finish;
-  const setFinish = (next: string) => setSelected({ id: product.id, finish: next });
+  // Only the specs we can actually confirm are listed — material and size stay
+  // out of the table until they are filled in on the catalogue entry.
+  const specs = [
+    ["Material", product.material],
+    ["Finish", product.finish],
+    ["Size", product.size],
+    ["Available in", product.variants.join(", ")],
+  ].filter(([, value]) => Boolean(value)) as [string, string][];
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -74,54 +73,18 @@ function ProductDetail() {
 
       <div className="mt-6 grid gap-10 lg:grid-cols-2">
         <div>
-          <Product3DViewer
-            product={product}
-            finish={finish}
-            onFinishChange={setFinish}
-            showFinishChips={false}
-            className="aspect-[4/3] w-full rounded-3xl shadow-[var(--shadow-soft)]"
-          />
-
-          <p className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
-            <Hand className="h-3.5 w-3.5 shrink-0" />
-            Drag the model to spin it, scroll to zoom, or use the on-screen controls.
+          <div className="overflow-hidden rounded-3xl bg-secondary shadow-[var(--shadow-soft)]">
+            <img
+              src={productImage(product.id)}
+              alt={product.name}
+              width={1280}
+              height={960}
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Product photography of the actual item. Finish tones can vary slightly between batches.
           </p>
-
-          {finishes.length > 1 && (
-            <div className="mt-4">
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                View in finish
-              </p>
-              <div className="mt-3 grid grid-cols-4 gap-3">
-                {finishes.map((option) => (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => setFinish(option)}
-                    aria-pressed={finish === option}
-                    className={`group rounded-xl p-1 text-left transition-colors ${
-                      finish === option ? "gradient-brand" : "bg-transparent hover:bg-secondary"
-                    }`}
-                  >
-                    <ProductThumb
-                      name={product.name}
-                      productId={product.id}
-                      categorySlug={product.category}
-                      finish={option}
-                      className="aspect-square w-full rounded-lg"
-                    />
-                    <span
-                      className={`mt-1 block truncate px-1 pb-0.5 text-[11px] font-medium ${
-                        finish === option ? "text-primary-foreground" : "text-muted-foreground"
-                      }`}
-                    >
-                      {option}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         <div>
@@ -129,18 +92,11 @@ function ProductDetail() {
             {category?.name}
           </p>
           <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">{product.name}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Product code: {product.id.toUpperCase()}
-          </p>
+          <p className="mt-1 text-sm text-muted-foreground">Product code: {product.code}</p>
           <p className="mt-5 leading-relaxed text-muted-foreground">{product.description}</p>
 
           <dl className="mt-7 grid gap-px overflow-hidden rounded-2xl bg-border sm:grid-cols-2">
-            {[
-              ["Material", product.material],
-              ["Finish", product.finish],
-              ["Size", product.size],
-              ["Variants", product.variants.join(", ")],
-            ].map(([k, v]) => (
+            {specs.map(([k, v]) => (
               <div key={k} className="bg-card p-4">
                 <dt className="text-xs uppercase tracking-widest text-muted-foreground">{k}</dt>
                 <dd className="mt-1 text-sm font-medium">{v}</dd>
@@ -160,9 +116,7 @@ function ProductDetail() {
               </a>
             </Button>
             <Button asChild size="lg" variant="outline">
-              {/* Quotes the finish currently shown in the viewer, not just the
-                  catalogue default. */}
-              <a href={productEnquiry(product, finish)} target="_blank" rel="noreferrer">
+              <a href={productEnquiry(product)} target="_blank" rel="noreferrer">
                 <WhatsAppGlyph className="mr-1.5 h-4 w-4" /> WhatsApp
               </a>
             </Button>

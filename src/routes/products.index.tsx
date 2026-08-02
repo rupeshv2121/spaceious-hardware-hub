@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ProductCard } from "@/components/site/ProductCard";
-import { categories, finishes, materials, products } from "@/lib/catalog";
+import { categories, finishes, products } from "@/lib/catalog";
 import { useMemo, useState } from "react";
 
 type Search = { category: string | undefined; q: string | undefined };
@@ -25,13 +25,12 @@ export const Route = createFileRoute("/products/")({
       {
         name: "description",
         content:
-          "Browse locks, door handles, aldrops, door kits, hinges, cabinet hardware and glass fittings by material, finish and size.",
+          "Browse Space-ious door and cabinet handles, knobs, folding handles, rim locks, hooks, curtain brackets and door accessories by category and finish.",
       },
       { property: "og:title", content: "Products & Categories — Space-ious Hardware" },
       {
         property: "og:description",
-        content:
-          "The full Space-ious hardware catalogue, filterable by category, material and finish.",
+        content: "The full Space-ious hardware catalogue, filterable by category and finish.",
       },
     ],
   }),
@@ -41,7 +40,6 @@ export const Route = createFileRoute("/products/")({
 function Products() {
   const { category, q } = Route.useSearch();
   const navigate = useNavigate();
-  const [material, setMaterial] = useState("all");
   const [finish, setFinish] = useState("all");
   const [sort, setSort] = useState("featured");
   const [query, setQuery] = useState(q ?? "");
@@ -53,24 +51,26 @@ function Products() {
     const term = (q ?? "").toLowerCase().trim();
     let out = products.filter((p) => {
       if (category && p.category !== category) return false;
-      if (material !== "all" && p.material !== material) return false;
-      if (finish !== "all" && p.finish !== finish) return false;
-      if (term && !`${p.name} ${p.material} ${p.finish}`.toLowerCase().includes(term)) return false;
+      // A finish listed under `variants` still counts as available in it, so
+      // filtering by "Black" surfaces the D-2 knob even though its headline
+      // finish is chrome.
+      if (finish !== "all" && p.finish !== finish && !p.variants.includes(finish)) return false;
+      if (term && !`${p.name} ${p.code} ${p.finish}`.toLowerCase().includes(term)) return false;
       return true;
     });
     if (sort === "name") out = [...out].sort((a, b) => a.name.localeCompare(b.name));
     if (sort === "featured")
       out = [...out].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
     return out;
-  }, [category, material, finish, sort, q]);
+  }, [category, finish, sort, q]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-12 pt-6 sm:px-6 sm:pt-12 lg:px-8">
       <header>
         <h1 className="text-3xl font-semibold sm:text-4xl">Products</h1>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">
-          Hardware for households, shops and commercial spaces — filter by category, material or
-          finish, then send an enquiry for pricing.
+          Hardware for households, shops and commercial spaces — filter by category or finish, then
+          send an enquiry for pricing.
         </p>
       </header>
 
@@ -144,21 +144,8 @@ function Products() {
             </form>
 
             <div className="mt-2.5 grid grid-cols-2 gap-2 md:flex md:flex-wrap md:items-center">
-              <Select value={material} onValueChange={setMaterial}>
-                <SelectTrigger className="w-full md:w-[170px]">
-                  <SelectValue placeholder="Material" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All materials</SelectItem>
-                  {materials.map((m) => (
-                    <SelectItem key={m} value={m}>
-                      {m}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
               <Select value={finish} onValueChange={setFinish}>
-                <SelectTrigger className="w-full md:w-[160px]">
+                <SelectTrigger className="w-full md:w-[180px]">
                   <SelectValue placeholder="Finish" />
                 </SelectTrigger>
                 <SelectContent>
@@ -171,7 +158,7 @@ function Products() {
                 </SelectContent>
               </Select>
               <Select value={sort} onValueChange={setSort}>
-                <SelectTrigger className="col-span-2 w-full md:w-[150px]">
+                <SelectTrigger className="w-full md:w-[150px]">
                   <SelectValue placeholder="Sort" />
                 </SelectTrigger>
                 <SelectContent>
