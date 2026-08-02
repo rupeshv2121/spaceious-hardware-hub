@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 dist
+# This project installs with bun (see vercel.json); bun.lock is the only lockfile.
+package-lock.json
 dist-ssr
 .output
 .vinxi
