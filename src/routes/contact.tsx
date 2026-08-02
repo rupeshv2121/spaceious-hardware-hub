@@ -32,7 +32,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact & Enquiry — Space-ious Hardware" },
       {
         property: "og:description",
-        content: "Request a quote for locks, handles, aldrops, hinges and fittings.",
+        content: "Request a quote for handles, knobs, folding handles, locks, hooks and fittings.",
       },
     ],
   }),

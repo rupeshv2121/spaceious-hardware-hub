@@ -18,8 +18,8 @@ export function Footer() {
             </span>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-steel-foreground/70">
-            Architectural hardware for households, shops and commercial spaces — locks, handles,
-            aldrops and fittings in a finish for every space.
+            Architectural hardware for households, shops and commercial spaces — handles, knobs,
+            locks and fittings in a finish for every space.
           </p>
           <div className="mt-5 flex gap-2">
             {[Instagram, Facebook, Linkedin].map((Icon, i) => (
@@ -66,7 +66,7 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold text-gold">Categories</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-steel-foreground/70">
-            {categories.slice(0, 6).map((c) => (
+            {categories.map((c) => (
               <li key={c.slug}>
                 <Link
                   to="/products"

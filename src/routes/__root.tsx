@@ -86,14 +86,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
+          "Door and cabinet handles, knobs, folding handles, rim locks, hooks, curtain brackets and door accessories for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
       { name: "author", content: "Space-ious" },
       { property: "og:title", content: "Space-ious — Hardware That Fits Every Space" },
       {
         property: "og:description",
         content:
-          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
+          "Door and cabinet handles, knobs, folding handles, rim locks, hooks, curtain brackets and door accessories for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -101,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
+          "Door and cabinet handles, knobs, folding handles, rim locks, hooks, curtain brackets and door accessories for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
       {
         property: "og:image",

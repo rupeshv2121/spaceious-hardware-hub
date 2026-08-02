@@ -13,13 +13,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
+          "Door and cabinet handles, knobs, folding handles, rim locks, hooks, curtain brackets and door accessories for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
       { property: "og:title", content: "Space-ious — Hardware That Fits Every Space" },
       {
         property: "og:description",
         content:
-          "Locks, door handles, aldrops, hinges and fittings for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
+          "Door and cabinet handles, knobs, folding handles, rim locks, hooks, curtain brackets and door accessories for households, shops and commercial spaces. Explore the Space-ious hardware catalogue and request a quote.",
       },
     ],
   }),

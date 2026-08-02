@@ -163,7 +163,7 @@ export function Header() {
                   autoFocus
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
-                  placeholder="Search aldrops, handles, hinges…"
+                  placeholder="Search handles, knobs, locks…"
                   className="border-white/15 bg-white/10 text-steel-foreground placeholder:text-steel-foreground/50"
                 />
                 <Button type="submit" size="sm">

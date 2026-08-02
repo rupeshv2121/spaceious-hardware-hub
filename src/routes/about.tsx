@@ -12,7 +12,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Space-ious supplies quality-checked locks, handles, aldrops and fittings to homes, shops and commercial projects. Learn about our sourcing and quality assurance.",
+          "Space-ious supplies quality-checked handles, knobs, folding handles, locks and fittings to homes, shops and commercial projects. Learn about our sourcing and quality assurance.",
       },
       { property: "og:title", content: "About Space-ious" },
       {
@@ -97,7 +97,7 @@ function About() {
           {[
             "Material grade verified per batch (SS 304, solid brass, zinc alloy)",
             "PVD and powder coat adhesion testing on finished samples",
-            "Mechanism cycle testing on locks, levers and closers",
+            "Mechanism cycle testing on locks, latches and folding handles",
             "Dimensional QC against published backsets and hole centres",
             "Packaging with matching screws and fixing templates",
             "Batch traceability for warranty and repeat orders",
